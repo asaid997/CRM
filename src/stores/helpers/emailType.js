@@ -13,7 +13,9 @@ export class EmailType {
 
     populate = async () => {
         const types = await apiManager.getEmailTypes()
-        this.types = types
+        if(types)
+            this.types = types
+        return types
     }
     byId = id => {
         const i = this.types.findIndex(e => e.id === id)

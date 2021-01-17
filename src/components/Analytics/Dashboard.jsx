@@ -56,16 +56,16 @@ function Dashboard(props) {
 
   useEffect(() => {
     apiManager.dash_salesByDate().then(setSalesByDate).catch(console.log)
-    apiManager.dash_salesByMonth().then((data) => setSalesByMonth(data.map((d) => {return { sales: parseInt(d.sales), key: d.month }}))).catch(console.log)
+    apiManager.dash_salesByMonth().then((data) => data && setSalesByMonth(data.map((d) => {return { sales: parseInt(d.sales), key: d.month }}))).catch(console.log)
   }, [])
   useEffect(() => {
-    apiManager.dash_salesByEmployee().then((data) => setSalesByEmployees(data.map((d) => {return {sales: parseInt(d.sales),key: ownerStore.byId(d.owner_id)}}))).catch(console.log)
+    apiManager.dash_salesByEmployee().then((data) => data && setSalesByEmployees(data.map((d) => {return {sales: parseInt(d.sales),key: ownerStore.byId(d.owner_id)}}))).catch(console.log)
   }, [ownerStore.owners])
 
-  useEffect(() => {apiManager.dash_salesByEmail().then((data) =>setSalesByEmail(data.map((d) => {return {sales: parseInt(d.sales),key: emailTypeStore.byId(d.email_type_id)}}))).catch(console.log)
+  useEffect(() => {apiManager.dash_salesByEmail().then((data) => data && setSalesByEmail(data.map((d) => {return {sales: parseInt(d.sales),key: emailTypeStore.byId(d.email_type_id)}}))).catch(console.log)
   }, [emailTypeStore.types])
 
-  useEffect(() => {apiManager.dash_salesByCountry().then((data) =>setSalesByCountry(data.map((d) => {return {sales: parseInt(d.sales),key: countrieStore.byId(d.country_id)}}))).catch(console.log)
+  useEffect(() => {apiManager.dash_salesByCountry().then((data) => data && setSalesByCountry(data.map((d) => {return {sales: parseInt(d.sales),key: countrieStore.byId(d.country_id)}}))).catch(console.log)
   }, [countrieStore.countries])
 
   return (

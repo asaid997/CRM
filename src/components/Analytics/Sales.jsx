@@ -8,7 +8,8 @@ import {
 
 export default function Sales(props) {
     const {salesByDate} = props
-    salesByDate.reverse()
+    if(salesByDate)
+        salesByDate.reverse()
 
     return (
         <ResponsiveContainer width="100%" height={200}  >

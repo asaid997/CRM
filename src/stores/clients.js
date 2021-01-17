@@ -33,12 +33,18 @@ export class ClientStore {
     return sum
   }
 
-  populate = async () => {
-    const clients = await apiManager.getClients()
-    await this.countires.populate()
-    await this.owners.populate()
-    await this.emailType.populate()
-    this.clients = clients.map(c =>new Client(c,this.countires.byId,this.owners.byId,this.emailType.byId))
+  populate = () => {
+    const promArr = [
+      apiManager.getClients(),
+      this.countires.populate(),
+      this.owners.populate(),
+      this.emailType.populate()
+    ]
+    Promise.all(promArr)
+    .then(
+      data => this.clients = data[0].map(c =>new Client(c,this.countires.byId,this.owners.byId,this.emailType.byId))
+    )
+    .catch(console.log)
   }
 
   cl_updateClient = async (id, first, last, country) => {

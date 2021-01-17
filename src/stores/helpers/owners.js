@@ -13,7 +13,9 @@ export class Owners {
 
     populate = async () => {
         const owners = await apiManager.getOwners()
-        this.owners = owners
+        if(owners)
+            this.owners = owners
+        return owners
     }
     byId = id => {
         const i = this.owners.findIndex(o => o.id === id)

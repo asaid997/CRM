@@ -13,7 +13,9 @@ export class Countires {
 
     populate = async () => {
         const countries = await apiManager.getCountries()
-        this.countries = countries
+        if(countries)
+            this.countries = countries
+        return countries
     }
     byId = id => {
         const i = this.countries.findIndex(c => c.id === id)
