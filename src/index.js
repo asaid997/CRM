@@ -1,0 +1,38 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
+import { Provider } from 'mobx-react'
+import {ClientStore as Clients} from './stores/clients'
+import {SnackBar} from './stores/snackBar'
+import { Countires } from './stores/helpers/countries'
+import { Owners } from './stores/helpers/owners'
+import { EmailType } from './stores/helpers/emailType'
+
+  const snackBarStore = new SnackBar()
+  const countrieStore = new Countires()
+  const ownerStore = new Owners()
+  const emailTypeStore = new EmailType()
+  const clientsStore = new Clients(countrieStore,ownerStore,emailTypeStore)
+
+const stores = {
+  clientsStore,
+  snackBarStore,
+  countrieStore,
+  ownerStore,
+  emailTypeStore
+}
+
+ReactDOM.render(
+  <Provider {...stores}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals()

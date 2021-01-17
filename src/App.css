@@ -1,0 +1,8 @@
+#tabs{
+  background-color: #0047E0;
+}
+
+.trow:hover{
+  cursor: pointer;
+  background-color: #F7F7F9;
+}
