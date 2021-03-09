@@ -1,6 +1,6 @@
 # Getting Started with CRM App
 
-Client Relationship Manager web appץ
+Client Relationship Manager web app.
 
 ## Available Scripts
 
