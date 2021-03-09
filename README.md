@@ -15,9 +15,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 Server will run on port 3001
 
 
-frontend - react,axios,recharts and material-ui
+frontend - react, axios, recharts, mobx and material-ui
 
-server - node.js,express and mysql
+server - node.js, express and mysql
 
 database - SQL
 
